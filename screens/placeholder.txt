@@ -1,0 +1,75 @@
+import React, { useState, useContext } from 'react';
+import { StatusBar } from 'expo-status-bar';
+
+import {
+    StyledContainer,
+    InnerContainer,
+    PageLogo,
+    PageTitle,
+    SubTitle,
+    StyledFormArea,
+    StyledButton,
+    ButtonText,
+    Colors,
+    MsgBox,
+    Line,
+    ExtraView,
+    ExtraText,
+    TextLink,
+    TextLinkContent,
+    WelcomeContainer,
+    WelcomeImage,
+    PictureInfoContainer,
+    Avatar
+
+} from './../components/style';
+
+const PictureView = ({route, navigation}) => {
+
+    const { asset_list, asset_size } = route.params;
+
+    let nftList = [];
+
+    for (let i = 0; i < asset_size; i++) {
+        let currAsset = asset_list.assets[i];
+        
+        if (currAsset.name) {
+            let nft = {
+                id: i,
+                imgUrl: currAsset.image_url+'=s0'
+            }
+            nftList.push(nft);
+        }
+    }
+
+    console.log(nftList);
+
+    
+    return (
+        <>
+            <StatusBar style="light" />
+            <InnerContainer>
+                <WelcomeImage resizeMode="cover" source={require('./../assets/RustyWheel1234567.jpg')} />
+                <PictureInfoContainer>
+                    
+                    <PageTitle picture={true}>NFT VIEW</PageTitle>
+                    
+                    <StyledFormArea>
+                        <Line />
+                        <StyledButton 
+                            onPress={() => {
+                                //implement AR
+                            }}
+                        >
+                            <ButtonText>Select NFT</ButtonText>
+                        </StyledButton>
+                       
+
+                    </StyledFormArea>
+                </PictureInfoContainer>
+            </InnerContainer>
+        </>
+    );
+}
+
+export default PictureView;
